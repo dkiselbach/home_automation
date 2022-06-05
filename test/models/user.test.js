@@ -13,17 +13,21 @@ describe('users', () => {
   });
 
   test('throws a validation error', async () => {
+    let errMessage;
+    let users;
+
     try {
-      const user = await User.query().insert({
+      await User.query().insert({
         first_name: 'Dylan',
         last_name: 'Kiselbach',
       });
     } catch (err) {
-      expect(err.message).toEqual("email: must have required property 'email'");
+      errMessage = err.message;
     }
 
-    const users = await User.query();
+    users = await User.query();
 
+    expect(errMessage).toEqual("email: must have required property 'email'");
     expect(users).toHaveLength(0);
   });
 });
