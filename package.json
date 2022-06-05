@@ -1,0 +1,26 @@
+{
+  "name": "home_automation",
+  "version": "1.0.0",
+  "description": "A home automation app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dkiselbach/home_automation.git"
+  },
+  "author": "Dylan Kiselbach",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dkiselbach/home_automation/issues"
+  },
+  "homepage": "https://github.com/dkiselbach/home_automation#readme",
+  "dependencies": {
+    "axios": "^0.27.2",
+    "graphql": "^16.5.0",
+    "knex": "^2.1.0",
+    "objection": "^3.0.1",
+    "pg": "^8.7.3"
+  }
+}
