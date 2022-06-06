@@ -1,12 +1,10 @@
 const User = require('../../models/user');
+const factory = require('../factories/index');
 
 describe('users', () => {
   test('creates a valid user', async () => {
-    const user = await User.query().insert({
-      first_name: 'Dylan',
-      last_name: 'Kiselbach',
-      email: 'dylankiselbach@test.com',
-    });
+    await factory.create('user');
+
     const users = await User.query();
 
     expect(users).toHaveLength(1);
