@@ -4,8 +4,8 @@ const { homeAttributes } = require('./home.factory');
 
 const userAttributes = {
   email: faker.internet.email(),
-  first_name: faker.name.firstName(),
-  last_name: faker.name.lastName(),
+  firstName: faker.name.firstName(),
+  lastName: faker.name.lastName(),
 };
 
 const createUserWithHome = async (attributes) => {

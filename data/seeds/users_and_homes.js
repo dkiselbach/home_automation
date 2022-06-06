@@ -3,13 +3,13 @@ exports.seed = async function (knex) {
   await knex('homes').del();
   await knex('home_users').del();
   await knex('users').insert([
-    { id: 1, first_name: 'Test', last_name: 'User', email: 'test@gmail.com' },
+    { id: 1, firstName: 'Test', lastName: 'User', email: 'test@gmail.com' },
   ]);
   await knex('homes').insert([
     {
       id: 1,
       name: 'Test House',
-      address_line1: '101 California',
+      addressLine1: '101 California',
       city: 'San Francisco',
     },
   ]);

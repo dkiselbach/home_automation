@@ -4,12 +4,12 @@ const { createHome, createHomeWithUser } = require('../factories/home.factory');
 describe('users', () => {
   describe('validations', () => {
     test('creates a valid home', async () => {
-      await createHome({ address_line1: '101 California' });
+      await createHome({ addressLine1: '101 California' });
 
       const homes = await Home.query();
 
       expect(homes).toHaveLength(1);
-      expect(homes[0].address_line1).toEqual('101 California');
+      expect(homes[0].addressLine1).toEqual('101 California');
     });
 
     test('throws a validation error', async () => {

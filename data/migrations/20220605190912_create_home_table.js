@@ -1,11 +1,11 @@
 exports.up = (knex) =>
   knex.schema.createTable('homes', (tbl) => {
     tbl.increments('id').primary();
-    tbl.string('address_line1').notNullable();
-    tbl.string('address_line2');
+    tbl.string('addressLine1').notNullable();
+    tbl.string('addressLine2');
     tbl.string('city').notNullable();
     tbl.string('state');
-    tbl.string('postal_code');
+    tbl.string('postalCode');
     tbl.string('country');
     tbl.string('name').notNullable();
   });

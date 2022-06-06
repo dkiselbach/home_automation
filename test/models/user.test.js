@@ -6,12 +6,12 @@ const Home = require('../../models/home');
 describe('users', () => {
   describe('validations', () => {
     test('creates a valid user', async () => {
-      await createUser({ first_name: 'Dylan' });
+      await createUser({ firstName: 'Dylan' });
 
       const users = await User.query();
 
       expect(users).toHaveLength(1);
-      expect(users[0].first_name).toEqual('Dylan');
+      expect(users[0].firstName).toEqual('Dylan');
     });
 
     test('throws a validation error', async () => {

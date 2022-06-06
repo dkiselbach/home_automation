@@ -13,21 +13,21 @@ class Home extends Model {
     return {
       type: 'object',
       required: [
-        'address_line1',
+        'addressLine1',
         'city',
         'state',
-        'postal_code',
+        'postalCode',
         'country',
         'name',
       ],
 
       properties: {
         id: { type: 'integer' },
-        address_line1: { type: 'string', minLength: 1, maxLength: 100 },
-        address_line2: { type: 'string', minLength: 1, maxLength: 100 },
+        addressLine1: { type: 'string', minLength: 1, maxLength: 100 },
+        addressLine2: { type: 'string', minLength: 1, maxLength: 100 },
         city: { type: 'string', minLength: 1, maxLength: 100 },
         state: { type: 'string', minLength: 1, maxLength: 100 },
-        postal_code: { type: 'string', minLength: 1, maxLength: 100 },
+        postalCode: { type: 'string', minLength: 1, maxLength: 100 },
         country: { type: 'string', minLength: 1, maxLength: 100 },
         name: { type: 'string', minLength: 1, maxLength: 100 },
       },

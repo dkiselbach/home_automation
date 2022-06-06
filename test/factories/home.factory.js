@@ -3,11 +3,11 @@ const { faker } = require('@faker-js/faker');
 const { userAttributes } = require('./user.factory');
 
 const homeAttributes = {
-  address_line1: faker.address.streetAddress(),
-  address_line2: faker.address.secondaryAddress(),
+  addressLine1: faker.address.streetAddress(),
+  addressLine2: faker.address.secondaryAddress(),
   city: faker.address.city(),
   state: faker.address.state(),
-  postal_code: faker.address.zipCode(),
+  postalCode: faker.address.zipCode(),
   country: faker.address.country(),
   name: faker.name.firstName(),
 };
