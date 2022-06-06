@@ -40,12 +40,12 @@ class Home extends Model {
     return {
       users: {
         relation: Model.ManyToManyRelation,
-        modelClass: User, // imported Objection class of "Project"
+        modelClass: User,
         join: {
           from: 'homes.id',
           through: {
-            from: 'homeusers.home_id',
-            to: 'homeusers.user_id',
+            from: 'home_users.home_id',
+            to: 'home_users.user_id',
           },
           to: 'users.id',
         },

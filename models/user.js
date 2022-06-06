@@ -23,6 +23,25 @@ class User extends Model {
     };
   }
 
+  static get relationMappings() {
+    const Home = require('./home');
+
+    return {
+      homes: {
+        relation: Model.ManyToManyRelation,
+        modelClass: Home,
+        join: {
+          from: 'users.id',
+          through: {
+            from: 'home_users.user_id',
+            to: 'home_users.home_id',
+          },
+          to: 'homes.id',
+        },
+      },
+    };
+  }
+
   // This object defines the relations to other models.
   // static get relationMappings() {
   //   // One way to prevent circular references

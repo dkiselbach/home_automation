@@ -1,21 +1,15 @@
 const Home = require('../../models/home');
-const knex = require('../../data/db');
+const { createHome, createHomeWithUser } = require('../factories/home.factory');
 
 describe('users', () => {
   describe('validations', () => {
     test('creates a valid home', async () => {
-      const home = await Home.query().insert({
-        address_line1: '101 California',
-        address_line2: 'Suite 300',
-        city: 'San Francisco',
-        state: 'California',
-        postal_code: '94111',
-        country: 'USA',
-        name: "Dylan's Apartment",
-      });
+      await createHome({ address_line1: '101 California' });
+
       const homes = await Home.query();
 
       expect(homes).toHaveLength(1);
+      expect(homes[0].address_line1).toEqual('101 California');
     });
 
     test('throws a validation error', async () => {
@@ -23,14 +17,7 @@ describe('users', () => {
       let homes;
 
       try {
-        await Home.query().insert({
-          address_line1: '101 California',
-          address_line2: 'Suite 300',
-          city: 'San Francisco',
-          state: 'California',
-          postal_code: '94111',
-          country: 'USA',
-        });
+        await createHome({ name: undefined });
       } catch (err) {
         errMessage = err.message;
       }
@@ -43,21 +30,16 @@ describe('users', () => {
   });
 
   describe('associations', () => {
-    beforeEach(async () => {});
+    let results;
 
-    test('creates a valid home', async () => {
-      const home = await Home.query().insert({
-        address_line1: '101 California',
-        address_line2: 'Suite 300',
-        city: 'San Francisco',
-        state: 'California',
-        postal_code: '94111',
-        country: 'USA',
-        name: "Dylan's Apartment",
-      });
-      const homes = await Home.query();
+    beforeEach(async () => {
+      results = await createHomeWithUser();
+    });
 
-      expect(homes).toHaveLength(1);
+    test('returns associated users', async () => {
+      const users = await Home.relatedQuery('users').for(results.id);
+
+      expect(users).toHaveLength(1);
     });
   });
 });
