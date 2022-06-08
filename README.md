@@ -6,7 +6,7 @@ in your home.
 ## migrations
 
 This application uses postgres and knex to handle database migrations. To setup the db locally,
-in `psql` run 'CREATE DATABASE home_automation;' and 'CREATE DATABASE home_automation_test;', then
+in `psql` run `CREATE DATABASE home_automation;` and `CREATE DATABASE home_automation_test;`, then
 run the migrate script.
 
 ### migrate
