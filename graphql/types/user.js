@@ -4,7 +4,6 @@ const UserType = (types) =>
   new GraphQLObjectType({
     name: 'User',
     fields: () => {
-      console.log(types.UserType);
       return {
         id: { type: GraphQLString },
         firstName: { type: GraphQLString },

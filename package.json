@@ -31,6 +31,7 @@
   "devDependencies": {
     "@faker-js/faker": "^7.1.0",
     "dotenv": "^16.0.1",
+    "easygraphql-tester": "^6.0.1",
     "jest": "^28.1.0",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2"

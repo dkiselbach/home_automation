@@ -1,7 +1,7 @@
 exports.seed = async function (knex) {
+  await knex('home_users').del();
   await knex('users').del();
   await knex('homes').del();
-  await knex('home_users').del();
   await knex('users').insert([
     { id: 1, firstName: 'Test', lastName: 'User', email: 'test@gmail.com' },
   ]);

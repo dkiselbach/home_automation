@@ -1,9 +1,20 @@
-exports.up = (knex) =>
-  knex.schema.createTable('home_users', (tbl) => {
-    tbl.increments('id').primary();
+const tableName = 'home_users';
 
+exports.up = async (knex) => {
+  await knex.schema.createTable(tableName, (tbl) => {
+    tbl.increments('id').primary();
     tbl.integer('home_id').references('id').inTable('homes').index();
     tbl.integer('user_id').references('id').inTable('users').index();
+    tbl.timestamps(false, true, true);
   });
 
-exports.down = (knex) => knex.schema.dropTableIfExists('home_users');
+  await knex.raw(`
+    CREATE TRIGGER update_timestamp
+    BEFORE UPDATE
+    ON ${tableName}
+    FOR EACH ROW
+    EXECUTE PROCEDURE update_timestamp();
+  `);
+};
+
+exports.down = (knex) => knex.schema.dropTableIfExists(tableName);

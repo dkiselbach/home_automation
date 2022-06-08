@@ -52,28 +52,6 @@ class Home extends Model {
       },
     };
   }
-
-  // This object defines the relations to other models.
-  // static get relationMappings() {
-  //   // One way to prevent circular references
-  //   // is to require the model classes here.
-  //   const Person = require('./Person');
-  //
-  //   return {
-  //     owner: {
-  //       relation: Model.BelongsToOneRelation,
-  //
-  //       // The related model. This can be either a Model subclass constructor or an
-  //       // absolute file path to a module that exports one.
-  //       modelClass: Person,
-  //
-  //       join: {
-  //         from: 'animals.ownerId',
-  //         to: 'persons.id',
-  //       },
-  //     },
-  //   };
-  // }
 }
 
 module.exports = Home;
