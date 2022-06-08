@@ -1,7 +1,8 @@
 # home_automation
 
 This app is a GraphQL/Koa application. The purpose of this app is to control various smart devices
-in your home.
+in your home. I started working with something similar for Rails but never finished it. I figured
+this was a good opportunity to learn some Node and do it a bit differently.
 
 ## migrations
 
