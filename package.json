@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "migrate": "npx knex migrate:latest --env test && npx knex migrate:latest --env development",
-    "rollback": "npx knex migrate:rollback --env test && npx knex migrate:rollback --env development"
+    "rollback": "npx knex migrate:rollback --env test && npx knex migrate:rollback --env development",
+    "seed": "npx knex seed:run"
   },
   "repository": {
     "type": "git",

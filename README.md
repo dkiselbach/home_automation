@@ -1,10 +1,22 @@
 # home_automation
 
+This app is a GraphQL/Koa application. The purpose of this app is to control various smart devices
+in your home.
+
 ## migrations
 
-`npx knex migrate:rollback --env test && npx knex migrate:rollback --env development`
-`npx knex migrate:latest --env test && npx knex migrate:latest --env development`
+This application uses postgres and knex to handle database migrations. To setup the db locally,
+in `psql` run 'CREATE DATABASE home_automation;' and 'CREATE DATABASE home_automation_test;', then
+run the migrate script.
+
+### migrate
+
+`npm run migrate`
+
+### rollback
+
+`npm run rollback`
 
 ### seeds
 
-`npx knex seed:run`
+`npm run seeds`
