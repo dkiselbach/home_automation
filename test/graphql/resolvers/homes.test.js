@@ -37,7 +37,7 @@ describe('homes', () => {
     });
   });
 
-  test('returns homes', async () => {
+  test('returns homes and users', async () => {
     const homes = await tester.graphql(query);
 
     expect(homes.data.homes).toHaveLength(2);

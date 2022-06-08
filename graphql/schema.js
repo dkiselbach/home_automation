@@ -1,5 +1,5 @@
 const graphQL = require('graphql');
-const usersResolver = require('./resolvers/users');
+const { users } = require('./resolvers/users');
 const { homes } = require('./resolvers/homes');
 const { GraphQLObjectType, GraphQLSchema, GraphQLList } = graphQL;
 
@@ -19,7 +19,7 @@ const RootQuery = new GraphQLObjectType({
     users: {
       type: GraphQLList(UserType),
       async resolve(parentValue, args) {
-        return usersResolver();
+        return users();
       },
     },
     homes: {
