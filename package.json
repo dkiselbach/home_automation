@@ -30,7 +30,7 @@
     "pg": "^8.7.3"
   },
   "devDependencies": {
-    "@faker-js/faker": "^7.1.0",
+    "@faker-js/faker": "^7.2.0",
     "dotenv": "^16.0.1",
     "easygraphql-tester": "^6.0.1",
     "jest": "^28.1.0",
