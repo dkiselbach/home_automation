@@ -6,7 +6,7 @@ exports.up = async (knex) => {
     tbl.string('firstName').notNullable();
     tbl.string('lastName').notNullable();
     tbl.string('email').notNullable();
-    tbl.timestamps(false, true, true);
+    tbl.timestamps(false, true);
   });
 
   await knex.raw(`

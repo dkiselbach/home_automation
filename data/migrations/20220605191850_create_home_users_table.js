@@ -5,7 +5,7 @@ exports.up = async (knex) => {
     tbl.increments('id').primary();
     tbl.integer('home_id').references('id').inTable('homes').index();
     tbl.integer('user_id').references('id').inTable('users').index();
-    tbl.timestamps(false, true, true);
+    tbl.timestamps(false, true);
   });
 
   await knex.raw(`

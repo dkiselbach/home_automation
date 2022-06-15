@@ -10,7 +10,7 @@ exports.up = async (knex) => {
     tbl.string('postalCode');
     tbl.string('country');
     tbl.string('name').notNullable();
-    tbl.timestamps(false, true, true);
+    tbl.timestamps(false, true);
   });
 
   await knex.raw(`

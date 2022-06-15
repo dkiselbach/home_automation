@@ -1,4 +1,4 @@
-const { GraphQLString, GraphQLNonNull } = require('graphql');
+const { GraphQLString, GraphQLNonNull, GraphQLID } = require('graphql');
 
 const UserCreateInput = {
   firstName: { type: new GraphQLNonNull(GraphQLString) },
@@ -6,4 +6,14 @@ const UserCreateInput = {
   email: { type: new GraphQLNonNull(GraphQLString) },
 };
 
-module.exports = { UserCreateInput };
+const UserUpdateInput = {
+  id: { type: new GraphQLNonNull(GraphQLID) },
+  firstName: { type: GraphQLString },
+  lastName: { type: GraphQLString },
+};
+
+const UserDeleteInput = {
+  id: { type: new GraphQLNonNull(GraphQLID) },
+};
+
+module.exports = { UserCreateInput, UserDeleteInput, UserUpdateInput };
