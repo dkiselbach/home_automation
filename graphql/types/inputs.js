@@ -4,6 +4,7 @@ const UserCreateInput = {
   firstName: { type: new GraphQLNonNull(GraphQLString) },
   lastName: { type: new GraphQLNonNull(GraphQLString) },
   email: { type: new GraphQLNonNull(GraphQLString) },
+  password: { type: new GraphQLNonNull(GraphQLString) },
 };
 
 const UserUpdateInput = {
@@ -16,4 +17,14 @@ const UserDeleteInput = {
   id: { type: new GraphQLNonNull(GraphQLID) },
 };
 
-module.exports = { UserCreateInput, UserDeleteInput, UserUpdateInput };
+const UserLoginInput = {
+  email: { type: new GraphQLNonNull(GraphQLString) },
+  password: { type: new GraphQLNonNull(GraphQLString) },
+};
+
+module.exports = {
+  UserCreateInput,
+  UserDeleteInput,
+  UserUpdateInput,
+  UserLoginInput,
+};

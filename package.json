@@ -20,8 +20,11 @@
   },
   "homepage": "https://github.com/dkiselbach/home_automation#readme",
   "dependencies": {
+    "@koa/cors": "^3.3.0",
     "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
     "graphql": "^16.5.0",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^2.1.0",
     "koa": "^2.13.4",
     "koa-graphql": "^0.12.0",

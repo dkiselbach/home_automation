@@ -1,4 +1,5 @@
 const Koa = require('koa');
+const cors = require('@koa/cors');
 const mount = require('koa-mount');
 const { graphqlHTTP } = require('koa-graphql');
 const HomeAutomationSchema = require('./graphql/schema');
@@ -7,6 +8,7 @@ const knex = require('./data/db');
 
 Model.knex(knex);
 const app = new Koa();
+app.use(cors());
 
 app.use(
   mount(
@@ -19,3 +21,4 @@ app.use(
 );
 
 app.listen(4000);
+console.log('listening');

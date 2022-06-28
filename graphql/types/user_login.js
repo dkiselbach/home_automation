@@ -1,15 +1,16 @@
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql');
 const { userHomes } = require('../resolvers/users');
 
-const UserType = (types) =>
+const UserLoginType = (types) =>
   new GraphQLObjectType({
-    name: 'User',
+    name: 'UserLogin',
     fields: () => {
       return {
         id: { type: GraphQLString },
         firstName: { type: GraphQLString },
         lastName: { type: GraphQLString },
         email: { type: GraphQLString },
+        token: { type: GraphQLString },
         homes: {
           type: new GraphQLList(types.HomeType),
           resolve(parentValue) {
@@ -20,4 +21,4 @@ const UserType = (types) =>
     },
   });
 
-module.exports = UserType;
+module.exports = UserLoginType;

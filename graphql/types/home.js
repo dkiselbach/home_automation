@@ -15,7 +15,7 @@ const UserType = (types) =>
         country: { type: GraphQLString },
         name: { type: GraphQLString },
         users: {
-          type: GraphQLList(types.UserType),
+          type: new GraphQLList(types.UserType),
           resolve(parentValue) {
             return homeUsers(parentValue.id);
           },

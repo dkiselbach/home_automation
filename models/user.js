@@ -19,6 +19,7 @@ class User extends Model {
         firstName: { type: 'string', minLength: 1, maxLength: 100 },
         lastName: { type: 'string', minLength: 1, maxLength: 100 },
         email: { type: 'string', minLength: 1, maxLength: 100 },
+        password: { type: 'string', minLength: 1, maxLength: 256 },
       },
     };
   }
