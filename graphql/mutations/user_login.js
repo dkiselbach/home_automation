@@ -3,11 +3,7 @@ import jwt from 'jsonwebtoken';
 import { GraphQLError } from 'graphql';
 import User from '../../models/user';
 
-const userByEmail = async (email) => {
-  const [user] = await User.query().where('email', email);
-
-  return user;
-};
+const userByEmail = async (email) => User.query().where('email', email);
 
 const authenticate = async (inputPassword, hashedPassword) => bcrypt.compare(inputPassword, hashedPassword);
 
@@ -18,7 +14,7 @@ const signedToken = (id, email) =>
 
 const userLogin = async (args) => {
   const { email, password } = args;
-  const user = await userByEmail(email);
+  const [user] = await userByEmail(email);
 
   if (!user) throw new GraphQLError('User not found');
 

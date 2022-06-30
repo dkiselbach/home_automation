@@ -1,9 +1,12 @@
 import User from '../../models/user';
+import { validateAccessByUserID } from '../../services/auth';
 
-const userUpdate = async (args) => {
-  const { id } = args;
+const userUpdate = async (args, ctx) => {
+  const { id, firstName, lastName } = args;
 
-  return User.query().patchAndFetchById(id, args);
+  validateAccessByUserID(id, ctx);
+
+  return User.query().patchAndFetchById(id, { firstName, lastName });
 };
 
-export { userUpdate };
+export default userUpdate;

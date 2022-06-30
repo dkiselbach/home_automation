@@ -1,14 +1,24 @@
 import jwt from 'jsonwebtoken';
-import User from '../models/user';
+import { GraphQLError } from 'graphql';
 
-const verifyToken = (token) => jwt.verify(token, process.env.JWT_SECRET);
-
-const authenticate = (token) => {
+const authenticateToken = (token) => {
   try {
-    return verifyToken(token);
+    return jwt.verify(token, process.env.JWT_SECRET);
   } catch (e) {
     return null;
   }
 };
 
-export default authenticate;
+const authenticateByUser = (ctx) => {
+  if (ctx.user?.id) return;
+
+  throw new GraphQLError('User authentication error');
+};
+
+const validateAccessByUserID = (userId, ctx) => {
+  if (ctx.user?.id === Number(userId)) return;
+
+  throw new GraphQLError('User authentication error');
+};
+
+export { authenticateToken, authenticateByUser, validateAccessByUserID };

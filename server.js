@@ -5,7 +5,7 @@ import { graphqlHTTP } from 'koa-graphql';
 import { Model } from 'objection';
 import { graphQLSchema } from './graphql/schema';
 import knex from './data/db';
-import authenticate from './services/auth';
+import { authenticateToken } from './services/auth';
 import User from './models/user';
 
 Model.knex(knex);
@@ -14,17 +14,16 @@ app.use(cors());
 
 app.use(async (ctx, next) => {
   const token = ctx.request.header.authorization;
-  ctx.token = token.split(' ')[1];
+  if (token) ctx.token = token.split(' ')[1];
   await next();
 });
 
 app.use(async (ctx, next) => {
   if (ctx.token) {
-    const creds = authenticate(ctx.token);
+    const creds = authenticateToken(ctx.token);
     if (creds) ctx.user = await User.query().findById(creds.id);
   }
 
-  console.log(ctx.user);
   await next();
 });
 

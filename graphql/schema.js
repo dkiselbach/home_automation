@@ -8,7 +8,7 @@ import { homes } from './resolvers/homes';
 import UserTypeInject from './types/user';
 import HomeTypeInject from './types/home';
 import UserLoginTypeInject from './types/user_login';
-import { userUpdate } from './mutations/user_update';
+import userUpdate from './mutations/user_update';
 import { UserCreateInput, UserDeleteInput, UserUpdateInput, UserLoginInput } from './types/inputs';
 
 const { GraphQLObjectType, GraphQLSchema, GraphQLList } = graphQL;
@@ -27,15 +27,11 @@ const RootQuery = new GraphQLObjectType({
     users: {
       type: new GraphQLList(UserType),
       description: 'Returns available users.',
-      async resolve() {
-        return users();
-      },
+      resolve: (parentValue, args, ctx) => users(ctx),
     },
     homes: {
       type: new GraphQLList(HomeType),
-      async resolve() {
-        return homes();
-      },
+      resolve: (parentValue, args, ctx) => homes(ctx),
     },
   },
 });
@@ -46,31 +42,23 @@ const mutation = new GraphQLObjectType({
     userCreate: {
       type: UserType,
       args: UserCreateInput,
-      async resolve(parentValue, args) {
-        return userCreate(args);
-      },
+      resolve: (parentValue, args) => userCreate(args),
     },
     userDelete: {
       type: UserType,
       args: UserDeleteInput,
-      async resolve(parentValue, args) {
-        return userDelete(args);
-      },
+      resolve: (parentValue, args, ctx) => userDelete(args, ctx),
     },
     userUpdate: {
       type: UserType,
       args: UserUpdateInput,
-      async resolve(parentValue, args) {
-        return userUpdate(args);
-      },
+      resolve: (parentValue, args, ctx) => userUpdate(args, ctx),
     },
 
     userLogin: {
       type: UserLoginType,
       args: UserLoginInput,
-      async resolve(parentValue, args) {
-        return userLogin(args);
-      },
+      resolve: (parentValue, args) => userLogin(args),
     },
   },
 });
