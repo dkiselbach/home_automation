@@ -4,6 +4,7 @@ import userCreate from './mutations/user_create';
 import userDelete from './mutations/user_delete';
 import userLogin from './mutations/user_login';
 import { homes } from './resolvers/homes';
+import user from './resolvers/user';
 
 import UserTypeInject from './types/user';
 import HomeTypeInject from './types/home';
@@ -24,6 +25,11 @@ const { UserType, HomeType, UserLoginType } = types;
 const RootQuery = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
+    user: {
+      type: UserType,
+      description: 'Returns the currently signed in user.',
+      resolve: (parentValue, args, ctx) => user(ctx),
+    },
     users: {
       type: new GraphQLList(UserType),
       description: 'Returns available users.',
