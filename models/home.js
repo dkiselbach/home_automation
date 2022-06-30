@@ -1,4 +1,5 @@
-const { Model } = require('objection');
+import { Model } from 'objection';
+import User from './user';
 
 class Home extends Model {
   // Table name is the only required property.
@@ -12,14 +13,7 @@ class Home extends Model {
   static get jsonSchema() {
     return {
       type: 'object',
-      required: [
-        'addressLine1',
-        'city',
-        'state',
-        'postalCode',
-        'country',
-        'name',
-      ],
+      required: ['addressLine1', 'city', 'state', 'postalCode', 'country', 'name'],
 
       properties: {
         id: { type: 'integer' },
@@ -35,8 +29,6 @@ class Home extends Model {
   }
 
   static get relationMappings() {
-    const User = require('./user');
-
     return {
       users: {
         relation: Model.ManyToManyRelation,
@@ -54,4 +46,4 @@ class Home extends Model {
   }
 }
 
-module.exports = Home;
+export default Home;

@@ -1,40 +1,35 @@
-const User = require('../../models/user');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const { GraphQLError } = require('graphql');
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import { GraphQLError } from 'graphql';
+import User from '../../models/user';
+
+const userByEmail = async (email) => {
+  const [user] = await User.query().where('email', email);
+
+  return user;
+};
+
+const authenticate = async (inputPassword, hashedPassword) => bcrypt.compare(inputPassword, hashedPassword);
+
+const signedToken = (id, email) =>
+  jwt.sign({ id, email }, process.env.JWT_SECRET, {
+    expiresIn: '30d',
+  });
 
 const userLogin = async (args) => {
   const { email, password } = args;
-  console.log(email);
-  let user = await User.query().where('email', email);
-  user = user[0];
-  console.log(user);
-  const hashedPassword = user.password;
+  const user = await userByEmail(email);
 
-  const authenticated = await bcrypt.compare(password, hashedPassword);
+  if (!user) throw new GraphQLError('User not found');
 
-  if (!authenticated) {
-    console.log(user);
-
-    throw new GraphQLError('User or password is incorrect');
+  if (!(await authenticate(password, user.password))) {
+    throw new GraphQLError('Password is incorrect');
   }
-
-  console.log(user.id, user.email);
-
-  const token = jwt.sign(
-    { id: user.id, email: user.email },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: '30d',
-    },
-  );
-
-  console.log(user);
 
   return {
     ...user,
-    token: token,
+    token: signedToken(user.id, user.email),
   };
 };
 
-module.exports = { userLogin };
+export default userLogin;

@@ -1,4 +1,4 @@
-const User = require('../../models/user');
+import User from '../../models/user';
 
 const userDelete = async (args) => {
   const { id } = args;
@@ -10,4 +10,4 @@ const userDelete = async (args) => {
   throw new Error(`User with id ${id} was not found`);
 };
 
-module.exports = { userDelete };
+export default userDelete;

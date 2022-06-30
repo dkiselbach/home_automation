@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A home automation app",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "jest",
     "migrate": "npx knex migrate:latest --env test && npx knex migrate:latest --env development",
@@ -30,12 +31,15 @@
     "koa-graphql": "^0.12.0",
     "koa-mount": "^4.0.0",
     "objection": "^3.0.1",
-    "pg": "^8.7.3"
+    "pg": "^8.7.3",
+    "dotenv": "^16.0.1"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.2.0",
-    "dotenv": "^16.0.1",
     "easygraphql-tester": "^6.0.1",
+    "eslint": "^8.18.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
     "jest": "^28.1.1",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2"

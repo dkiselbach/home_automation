@@ -1,4 +1,4 @@
-const { GraphQLString, GraphQLNonNull, GraphQLID } = require('graphql');
+import { GraphQLString, GraphQLNonNull, GraphQLID } from 'graphql';
 
 const UserCreateInput = {
   firstName: { type: new GraphQLNonNull(GraphQLString) },
@@ -22,9 +22,4 @@ const UserLoginInput = {
   password: { type: new GraphQLNonNull(GraphQLString) },
 };
 
-module.exports = {
-  UserCreateInput,
-  UserDeleteInput,
-  UserUpdateInput,
-  UserLoginInput,
-};
+export { UserCreateInput, UserDeleteInput, UserUpdateInput, UserLoginInput };

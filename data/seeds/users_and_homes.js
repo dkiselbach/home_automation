@@ -1,5 +1,6 @@
-const bcrypt = require('bcrypt');
-exports.seed = async function (knex) {
+import bcrypt from 'bcrypt';
+
+const seeds = async (knex) => {
   await knex('home_users').del();
   await knex('users').del();
   await knex('homes').del();
@@ -28,3 +29,5 @@ exports.seed = async function (knex) {
     },
   ]);
 };
+
+export default seeds;

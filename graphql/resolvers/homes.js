@@ -1,11 +1,7 @@
-const Home = require('../../models/home');
+import Home from '../../models/home';
 
-const homes = async () => {
-  return Home.query().orderBy('created_at', 'desc');
-};
+const homes = async () => Home.query().orderBy('created_at', 'desc');
 
-const homeUsers = async (home_id) => {
-  return Home.relatedQuery('users').for(home_id).orderBy('created_at', 'desc');
-};
+const homeUsers = async (homeId) => Home.relatedQuery('users').for(homeId).orderBy('created_at', 'desc');
 
-module.exports = { homes, homeUsers };
+export { homes, homeUsers };

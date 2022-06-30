@@ -1,4 +1,5 @@
-const { Model } = require('objection');
+import { Model } from 'objection';
+import Home from './home';
 
 class User extends Model {
   // Table name is the only required property.
@@ -25,8 +26,6 @@ class User extends Model {
   }
 
   static get relationMappings() {
-    const Home = require('./home');
-
     return {
       homes: {
         relation: Model.ManyToManyRelation,
@@ -44,4 +43,4 @@ class User extends Model {
   }
 }
 
-module.exports = User;
+export default User;

@@ -1,6 +1,8 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
 
-module.exports = {
+dotenv.config();
+
+export default {
   development: {
     client: 'pg',
     connection: 'postgresql://localhost/home_automation',

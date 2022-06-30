@@ -1,28 +1,24 @@
-const graphQL = require('graphql');
+import graphQL from 'graphql';
+import { users } from './resolvers/users';
+import userCreate from './mutations/user_create';
+import userDelete from './mutations/user_delete';
+import userLogin from './mutations/user_login';
+import { homes } from './resolvers/homes';
+
+import UserTypeInject from './types/user';
+import HomeTypeInject from './types/home';
+import UserLoginTypeInject from './types/user_login';
+import { userUpdate } from './mutations/user_update';
+import { UserCreateInput, UserDeleteInput, UserUpdateInput, UserLoginInput } from './types/inputs';
+
 const { GraphQLObjectType, GraphQLSchema, GraphQLList } = graphQL;
-
-const { users } = require('./resolvers/users');
-const { userCreate } = require('./mutations/user_create');
-const { userDelete } = require('./mutations/user_delete');
-const { userLogin } = require('./mutations/user_login');
-const { homes } = require('./resolvers/homes');
-
-const UserTypeInject = require('./types/user');
-const HomeTypeInject = require('./types/home');
-const UserLoginTypeInject = require('./types/user_login');
 
 const types = {};
 
 types.UserType = UserTypeInject(types);
 types.UserLoginType = UserLoginTypeInject(types);
 types.HomeType = HomeTypeInject(types);
-const {
-  UserCreateInput,
-  UserDeleteInput,
-  UserUpdateInput,
-  UserLoginInput,
-} = require('./types/inputs');
-const { userUpdate } = require('./mutations/user_update');
+
 const { UserType, HomeType, UserLoginType } = types;
 
 const RootQuery = new GraphQLObjectType({
@@ -30,13 +26,14 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     users: {
       type: new GraphQLList(UserType),
-      async resolve(parentValue, args) {
+      description: 'Returns available users.',
+      async resolve() {
         return users();
       },
     },
     homes: {
       type: new GraphQLList(HomeType),
-      async resolve(parentValue, args) {
+      async resolve() {
         return homes();
       },
     },
@@ -78,7 +75,9 @@ const mutation = new GraphQLObjectType({
   },
 });
 
-module.exports = new GraphQLSchema({
+const graphQLSchema = new GraphQLSchema({
   query: RootQuery,
   mutation,
 });
+
+export { graphQLSchema };
