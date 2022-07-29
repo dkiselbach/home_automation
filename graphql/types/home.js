@@ -1,11 +1,11 @@
-import { GraphQLObjectType, GraphQLList, GraphQLString } from 'graphql';
+import { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLID } from 'graphql';
 import { homeUsers } from '../resolvers/homes';
 
 const UserType = (types) =>
   new GraphQLObjectType({
     name: 'Home',
     fields: () => ({
-      id: { type: GraphQLString },
+      id: { type: GraphQLID },
       addressLine1: { type: GraphQLString },
       addressLine2: { type: GraphQLString },
       city: { type: GraphQLString },
