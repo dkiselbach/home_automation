@@ -1,6 +1,6 @@
-const { createUserWithHome } = require('../../factories/user.factory');
-const EasyGraphQLTester = require('easygraphql-tester');
-const schema = require('../../../graphql/schema');
+import { createUserWithHome } from '../../factories/user.factory';
+import EasyGraphQLTester from 'easygraphql-tester';
+import { graphQLSchema } from '../../../src/graphql/schema';
 
 describe('homes', () => {
   let tester;
@@ -23,7 +23,7 @@ describe('homes', () => {
   }`;
 
   beforeEach(async () => {
-    tester = new EasyGraphQLTester(schema);
+    tester = new EasyGraphQLTester(graphQLSchema);
     await createUserWithHome({
       firstName: 'Dylan',
       lastName: 'Kiselbach',

@@ -1,5 +1,5 @@
 import { GraphQLObjectType, GraphQLList, GraphQLString, GraphQLID } from 'graphql';
-import { homeUsers } from '../resolvers/homes';
+import { homeUsers } from '../resolvers/homes.js';
 
 const UserType = (types) =>
   new GraphQLObjectType({

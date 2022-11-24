@@ -1,6 +1,8 @@
-module.exports = {
+import { defaults } from 'jest-config';
+
+export default {
   clearMocks: true,
-  moduleFileExtensions: ['js'],
+  moduleFileExtensions: [...defaults.moduleFileExtensions],
   roots: ['<rootDir>'],
   testEnvironment: 'node',
   globals: {
@@ -8,7 +10,12 @@ module.exports = {
       diagnostics: false,
     },
   },
-  setupFilesAfterEnv: ['./test/jest.setup.js'],
+  preset: 'ts-jest',
+  setupFilesAfterEnv: ['./test/jest.setup.ts'],
+  transform: {
+    '^.+\\.ts?$': 'ts-jest',
+  },
+  transformIgnorePatterns: ['<rootDir>/node_modules/'],
   // globalSetup: '<rootDir>/test/global_setup.js',
   // globalTeardown: '<rootDir>/test/global_teardown.js',
 };

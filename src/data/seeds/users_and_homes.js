@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 
-const seeds = async (knex) => {
+export const seed = async (knex) => {
   await knex('home_users').del();
   await knex('users').del();
   await knex('homes').del();
@@ -29,5 +29,3 @@ const seeds = async (knex) => {
     },
   ]);
 };
-
-export default seeds;

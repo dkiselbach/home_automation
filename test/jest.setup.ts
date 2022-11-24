@@ -1,7 +1,5 @@
-const objection = require('objection');
-const knex = require('../data/db');
-
-const { transaction, Model } = objection;
+import { transaction, Model } from 'objection';
+import knex from '../src/data/db';
 
 global.beforeAll(async () => {
   global.knex = knex;

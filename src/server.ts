@@ -3,10 +3,10 @@ import cors from '@koa/cors';
 import mount from 'koa-mount';
 import { graphqlHTTP } from 'koa-graphql';
 import { Model } from 'objection';
-import { graphQLSchema } from './graphql/schema';
-import knex from './data/db';
-import { authenticateToken } from './services/auth';
-import User from './models/user';
+import { graphQLSchema } from './graphql/schema.js';
+import knex from './data/db.js';
+import { authenticateToken } from '../services/auth.js';
+import User from './models/user.js';
 
 Model.knex(knex);
 const app = new Koa();

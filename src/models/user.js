@@ -1,5 +1,5 @@
 import { Model } from 'objection';
-import Home from './home';
+import Home from './home.js';
 
 class User extends Model {
   // Table name is the only required property.

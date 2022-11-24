@@ -1,18 +1,16 @@
-import graphQL from 'graphql';
-import { users } from './resolvers/users';
-import userCreate from './mutations/user_create';
-import userDelete from './mutations/user_delete';
-import userLogin from './mutations/user_login';
-import { homes } from './resolvers/homes';
-import user from './resolvers/user';
+import { GraphQLObjectType, GraphQLSchema, GraphQLList } from 'graphql';
+import { users } from './resolvers/users.js';
+import userCreate from './mutations/user_create.js';
+import userDelete from './mutations/user_delete.js';
+import userLogin from './mutations/user_login.js';
+import { homes } from './resolvers/homes.js';
+import user from './resolvers/user.js';
 
-import UserTypeInject from './types/user';
-import HomeTypeInject from './types/home';
-import UserLoginTypeInject from './types/user_login';
-import userUpdate from './mutations/user_update';
-import { UserCreateInput, UserDeleteInput, UserUpdateInput, UserLoginInput } from './types/inputs';
-
-const { GraphQLObjectType, GraphQLSchema, GraphQLList } = graphQL;
+import UserTypeInject from './types/user.js';
+import HomeTypeInject from './types/home.js';
+import UserLoginTypeInject from './types/user_login.js';
+import userUpdate from './mutations/user_update.js';
+import { UserCreateInput, UserDeleteInput, UserUpdateInput, UserLoginInput } from './types/inputs.js';
 
 const types = {};
 

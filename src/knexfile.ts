@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+require('ts-node/register');
 
 dotenv.config();
 
@@ -7,26 +8,26 @@ export default {
     client: 'pg',
     connection: 'postgresql://localhost/home_automation',
     migrations: {
-      directory: './data/migrations',
+      directory: './migrations',
     },
-    seeds: { directory: './data/seeds' },
+    seeds: { directory: './seeds' },
   },
 
   test: {
     client: 'pg',
     connection: 'postgresql://localhost/home_automation_test',
     migrations: {
-      directory: './data/migrations',
+      directory: './migrations',
     },
-    seeds: { directory: './data/seeds' },
+    seeds: { directory: './seeds' },
   },
 
   production: {
     client: 'pg',
     connection: process.env.DB_URL,
     migrations: {
-      directory: './data/migrations',
+      directory: './migrations',
     },
-    seeds: { directory: './data/seeds' },
+    seeds: { directory: './seeds' },
   },
 };

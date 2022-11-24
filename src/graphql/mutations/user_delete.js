@@ -1,5 +1,5 @@
-import User from '../../models/user';
-import { validateAccessByUserID } from '../../services/auth';
+import User from '../../models/user.js';
+import { validateAccessByUserID } from '../../../services/auth.js';
 
 const userDelete = async (args, ctx) => {
   const { id } = args;

@@ -1,5 +1,5 @@
-const Home = require('../../models/home');
-const { createHome, createHomeWithUser } = require('../factories/home.factory');
+import Home from '../../src/models/home';
+import { createHome, createHomeWithUser } from '../factories/home.factory';
 
 describe('users', () => {
   describe('validations', () => {
