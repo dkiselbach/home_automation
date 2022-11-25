@@ -33,10 +33,10 @@
     "koa-mount": "^4.0.0",
     "objection": "^3.0.1",
     "pg": "^8.7.3",
-    "dotenv": "^16.0.1"
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
-    "dotenv": "^16.0.1",
+    "dotenv": "^16.0.3",
     "easygraphql-tester": "^6.0.1",
     "eslint": "^8.28.0",
     "eslint-config-airbnb-base": "^15.0.0",
