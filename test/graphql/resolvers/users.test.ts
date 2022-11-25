@@ -1,6 +1,6 @@
-import { createUserWithHome } from '../../factories/user.factory';
+import { createUserWithHome } from '../../factories/user.factory.js';
 import EasyGraphQLTester from 'easygraphql-tester';
-import { graphQLSchema } from '../../../src/graphql/schema';
+import { graphQLSchema } from '../../../src/graphql/schema.js';
 
 describe('homes', () => {
   let tester;

@@ -1,5 +1,4 @@
 import dotenv from 'dotenv';
-require('ts-node/register');
 
 dotenv.config();
 

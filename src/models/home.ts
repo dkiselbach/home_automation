@@ -2,6 +2,15 @@ import { Model } from 'objection';
 import User from './user.js';
 
 class Home extends Model {
+  id: number;
+  addressLine1: string;
+  addressLine2: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  country: string;
+  name: string;
+
   // Table name is the only required property.
   static get tableName() {
     return 'homes';

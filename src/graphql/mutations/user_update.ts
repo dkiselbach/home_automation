@@ -1,5 +1,5 @@
 import User from '../../models/user.js';
-import { validateAccessByUserID } from '../../../services/auth.js';
+import { validateAccessByUserID } from '../../services/auth.js';
 
 const userUpdate = async (args, ctx) => {
   const { id, firstName, lastName } = args;

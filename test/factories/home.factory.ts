@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
-import Home from '../../src/models/home';
-import { userAttributes } from './user.factory';
+import Home from '../../src/models/home.js';
+import { userAttributes } from './user.factory.js';
 
 export const homeAttributes = () => ({
   addressLine1: faker.address.streetAddress(),
@@ -12,7 +12,7 @@ export const homeAttributes = () => ({
   name: faker.name.firstName(),
 });
 
-export const createHomeWithUser = async (attributes) => {
+export const createHomeWithUser = async (attributes?) => {
   const baseAttributes = {
     ...homeAttributes(),
     users: [userAttributes()],

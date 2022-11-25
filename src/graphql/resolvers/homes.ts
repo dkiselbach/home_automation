@@ -1,5 +1,5 @@
 import Home from '../../models/home.js';
-import { authenticateByUser } from '../../../services/auth.js';
+import { authenticateByUser } from '../../services/auth.js';
 
 const homes = async (ctx) => {
   authenticateByUser(ctx);

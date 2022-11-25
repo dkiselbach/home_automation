@@ -12,7 +12,12 @@ import UserLoginTypeInject from './types/user_login.js';
 import userUpdate from './mutations/user_update.js';
 import { UserCreateInput, UserDeleteInput, UserUpdateInput, UserLoginInput } from './types/inputs.js';
 
-const types = {};
+interface SchemaTypes {
+  UserType?: any;
+  UserLoginType?: any;
+  HomeType?: any;
+}
+const types: SchemaTypes = {};
 
 types.UserType = UserTypeInject(types);
 types.UserLoginType = UserLoginTypeInject(types);
@@ -67,9 +72,7 @@ const mutation = new GraphQLObjectType({
   },
 });
 
-const graphQLSchema = new GraphQLSchema({
+export const graphQLSchema = new GraphQLSchema({
   query: RootQuery,
   mutation,
 });
-
-export { graphQLSchema };

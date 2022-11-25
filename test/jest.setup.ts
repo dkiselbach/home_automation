@@ -1,5 +1,5 @@
 import { transaction, Model } from 'objection';
-import knex from '../src/data/db';
+import knex from '../src/data/db.js';
 
 global.beforeAll(async () => {
   global.knex = knex;
