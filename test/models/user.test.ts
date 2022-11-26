@@ -1,7 +1,7 @@
-import User from '../../src/models/user';
-import { createUser, createUserWithHome } from '../factories/user.factory';
-import { createHomeWithUser } from '../factories/home.factory';
-import Home from '../../src/models/home';
+import User from '../../src/models/user.js';
+import { createUser, createUserWithHome } from '../factories/user.factory.js';
+import { createHomeWithUser } from '../factories/home.factory.js';
+import Home from '../../src/models/home.js';
 
 describe('users', () => {
   describe('validations', () => {

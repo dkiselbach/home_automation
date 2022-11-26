@@ -1,9 +1,14 @@
 import { transaction, Model } from 'objection';
 import knex from '../src/data/db.js';
+import dotenv from 'dotenv';
+dotenv.config();
+
+import App from '../src/server.js';
 
 global.beforeAll(async () => {
   global.knex = knex;
   global.txn = null;
+  global.app = App;
 });
 
 global.beforeEach(async () => {
@@ -18,4 +23,5 @@ global.afterEach(async () => {
 
 global.afterAll(async () => {
   global.knex.destroy();
+  global.app.close();
 });

@@ -1,17 +1,18 @@
 import { faker } from '@faker-js/faker';
 import User from '../../src/models/user.js';
 import { homeAttributes } from './home.factory.js';
+import bcrypt from 'bcrypt';
 
-export const userAttributes = () => ({
+export const userAttributes = async () => ({
   email: faker.internet.email(),
   firstName: faker.name.firstName(),
   lastName: faker.name.lastName(),
-  password: faker.internet.password(),
+  password: await bcrypt.hash('password', 10),
 });
 
 export const createUserWithHome = async (attributes?) => {
   const baseAttributes = {
-    ...userAttributes(),
+    ...(await userAttributes()),
     homes: [homeAttributes()],
   };
 

@@ -1,9 +1,10 @@
 import { createUserWithHome } from '../../factories/user.factory.js';
-import EasyGraphQLTester from 'easygraphql-tester';
-import { graphQLSchema } from '../../../src/graphql/schema.js';
+import request from 'supertest';
+// @ts-nocheck
 
 describe('homes', () => {
   let tester;
+  let token;
   let query = `{
     users {
       id
@@ -21,9 +22,14 @@ describe('homes', () => {
       }
     }
   }`;
+  let loginMutation = `mutation {
+    userLogin(email: "test@gmail.com", password: "password") {
+      id
+      token
+    }
+  }`;
 
   beforeEach(async () => {
-    tester = new EasyGraphQLTester(graphQLSchema);
     await createUserWithHome({
       firstName: 'Dylan',
       lastName: 'Kiselbach',
@@ -47,7 +53,18 @@ describe('homes', () => {
   });
 
   test('returns users and homes', async () => {
-    const homes = await tester.graphql(query);
+    const tokenResponse = await request(global.app)
+      .post('/graphql')
+      .send({ query: loginMutation })
+      .set('Accept', 'application/json');
+
+    const homesResponse = await request(global.app)
+      .post('/graphql')
+      .send({ query: query })
+      .set('Accept', 'application/json')
+      .set('Authorization', 'Bearer ' + tokenResponse.body.data.userLogin.token);
+
+    const homes = homesResponse.body;
 
     expect(homes.data.users).toHaveLength(2);
     expect(homes.data.users[0].firstName).toEqual('Dylan');

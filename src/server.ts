@@ -38,5 +38,6 @@ app.use(
   ),
 );
 
-app.listen(4000);
+export default app.listen(4000);
+
 console.log('listening');
