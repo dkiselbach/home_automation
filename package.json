@@ -40,7 +40,7 @@
     "koa-graphql": "^0.12.0",
     "koa-mount": "^4.0.0",
     "objection": "^3.0.1",
-    "pg": "^8.7.3"
+    "pg": "^8.8.0"
   },
   "devDependencies": {
     "@types/dotenv": "^8.2.0",
