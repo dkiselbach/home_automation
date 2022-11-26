@@ -1,8 +1,8 @@
-const { faker } = require('@faker-js/faker');
-const Home = require('../../models/home');
-const { userAttributes } = require('./user.factory');
+import { faker } from '@faker-js/faker';
+import Home from '../../src/models/home.js';
+import { userAttributes } from './user.factory.js';
 
-const homeAttributes = () => ({
+export const homeAttributes = () => ({
   addressLine1: faker.address.streetAddress(),
   addressLine2: faker.address.secondaryAddress(),
   city: faker.address.city(),
@@ -12,7 +12,7 @@ const homeAttributes = () => ({
   name: faker.name.firstName(),
 });
 
-const createHomeWithUser = async (attributes) => {
+export const createHomeWithUser = async (attributes?) => {
   const baseAttributes = {
     ...homeAttributes(),
     users: [userAttributes()],
@@ -21,7 +21,4 @@ const createHomeWithUser = async (attributes) => {
   return Home.query().insertGraph({ ...baseAttributes, ...attributes });
 };
 
-const createHome = async (attributes) =>
-  Home.query().insert({ ...homeAttributes(), ...attributes });
-
-module.exports = { createHomeWithUser, createHome, homeAttributes };
+export const createHome = async (attributes) => Home.query().insert({ ...homeAttributes(), ...attributes });

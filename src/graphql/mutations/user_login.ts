@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { GraphQLError } from 'graphql';
-import User from '../../models/user';
+import User from '../../models/user.js';
 
 const userByEmail = async (email) => User.query().where('email', email);
 

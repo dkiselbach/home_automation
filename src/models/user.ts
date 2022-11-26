@@ -1,7 +1,13 @@
 import { Model } from 'objection';
-import Home from './home';
+import Home from './home.js';
 
 class User extends Model {
+  id: number;
+  firstName: string;
+  lastName: string;
+  password: string;
+  email: string;
+
   // Table name is the only required property.
   static get tableName() {
     return 'users';

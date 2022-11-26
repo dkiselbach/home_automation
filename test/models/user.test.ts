@@ -1,7 +1,7 @@
-const User = require('../../models/user');
-const { createUser, createUserWithHome } = require('../factories/user.factory');
-const { createHomeWithUser } = require('../factories/home.factory');
-const Home = require('../../models/home');
+import User from '../../src/models/user.js';
+import { createUser, createUserWithHome } from '../factories/user.factory.js';
+import { createHomeWithUser } from '../factories/home.factory.js';
+import Home from '../../src/models/home.js';
 
 describe('users', () => {
   describe('validations', () => {
@@ -26,9 +26,7 @@ describe('users', () => {
 
       users = await User.query();
 
-      expect(errorMessage).toEqual(
-        "email: must have required property 'email'",
-      );
+      expect(errorMessage).toEqual("email: must have required property 'email'");
       expect(users).toHaveLength(0);
     });
   });

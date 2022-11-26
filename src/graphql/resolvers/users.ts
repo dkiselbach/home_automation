@@ -1,5 +1,5 @@
-import User from '../../models/user';
-import { authenticateByUser } from '../../services/auth';
+import User from '../../models/user.js';
+import { authenticateByUser } from '../../services/auth.js';
 
 const users = async (ctx) => {
   authenticateByUser(ctx);
