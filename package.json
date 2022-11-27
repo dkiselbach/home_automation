@@ -12,7 +12,7 @@
     "migrate": "npx knex migrate:latest --env test && npx knex migrate:latest --env development",
     "rollback": "npx knex migrate:rollback --env test && npx knex migrate:rollback --env development",
     "seed": "npx knex --knexfile src/data/knexfile.ts seed:run",
-    "dev": "nodemon src/server.ts",
+    "dev": "ts-node-esm src/server.ts",
     "knex:migrate:make": "npx knex --knexfile src/data/knexfile.ts -x ts migrate:make",
     "knex:migrate:latest": "npx knex --knexfile src/data/knexfile.ts migrate:latest --env test && npx knex --knexfile src/data/knexfile.ts migrate:latest --env development",
     "knex:migrate:rollback": "npx knex --knexfile src/data/knexfile.ts migrate:rollback --env test && npx knex --knexfile src/data/knexfile.ts migrate:rollback --env development",

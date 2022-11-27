@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 import Home from '../../src/models/home.js';
-import { userAttributes } from './user.factory.js';
+import { userAttributes, userDefaultPassword } from './user.factory.js';
 
 export const homeAttributes = () => ({
   addressLine1: faker.address.streetAddress(),
@@ -15,8 +15,14 @@ export const homeAttributes = () => ({
 export const createHomeWithUser = async (attributes?) => {
   const baseAttributes = {
     ...homeAttributes(),
-    users: [userAttributes()],
+    users: [await userAttributes()],
   };
+
+  if (attributes?.users) {
+    attributes.users[0].password = await userDefaultPassword();
+  }
+
+  console.log({ ...baseAttributes, ...attributes });
 
   return Home.query().insertGraph({ ...baseAttributes, ...attributes });
 };
