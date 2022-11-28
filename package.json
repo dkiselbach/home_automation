@@ -31,7 +31,7 @@
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
     "@koa/cors": "^4.0.0",
-    "axios": "^0.27.2",
+    "axios": "^1.2.0",
     "bcrypt": "^5.0.1",
     "graphql": "^16.5.0",
     "jsonwebtoken": "^8.5.1",
