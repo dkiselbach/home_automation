@@ -1,10 +1,8 @@
 import { createUserWithHome } from '../../factories/user.factory.js';
 import request from 'supertest';
-// @ts-nocheck
+import { authenticationHeader } from '../../utils/authentication.js';
 
 describe('homes', () => {
-  let tester;
-  let token;
   let query = `{
     users {
       id
@@ -20,12 +18,6 @@ describe('homes', () => {
         postalCode
         name
       }
-    }
-  }`;
-  let loginMutation = `mutation {
-    userLogin(email: "test@gmail.com", password: "password") {
-      id
-      token
     }
   }`;
 
@@ -53,27 +45,22 @@ describe('homes', () => {
   });
 
   test('returns users and homes', async () => {
-    const tokenResponse = await request(global.app)
-      .post('/graphql')
-      .send({ query: loginMutation })
-      .set('Accept', 'application/json');
-
-    const homesResponse = await request(global.app)
+    const usersResponse = await request(global.app)
       .post('/graphql')
       .send({ query: query })
       .set('Accept', 'application/json')
-      .set('Authorization', 'Bearer ' + tokenResponse.body.data.userLogin.token);
+      .set('Authorization', await authenticationHeader());
 
-    const homes = homesResponse.body;
+    const users = usersResponse.body;
 
-    expect(homes.data.users).toHaveLength(2);
-    expect(homes.data.users[0].firstName).toEqual('Dylan');
-    expect(homes.data.users[0].lastName).toEqual('Kiselbach');
-    expect(homes.data.users[0].email).toEqual('test@gmail.com');
-    expect(homes.data.users[0].homes[0].addressLine1).toEqual('An address');
-    expect(homes.data.users[0].homes[0].name).toEqual('A name');
-    expect(homes.data.users[1].firstName).toEqual('Han');
-    expect(homes.data.users[1].lastName).toEqual('Duet');
-    expect(homes.data.users[1].email).toEqual('handuet@thumbwars.com');
+    expect(users.data.users).toHaveLength(2);
+    expect(users.data.users[0].firstName).toEqual('Dylan');
+    expect(users.data.users[0].lastName).toEqual('Kiselbach');
+    expect(users.data.users[0].email).toEqual('test@gmail.com');
+    expect(users.data.users[0].homes[0].addressLine1).toEqual('An address');
+    expect(users.data.users[0].homes[0].name).toEqual('A name');
+    expect(users.data.users[1].firstName).toEqual('Han');
+    expect(users.data.users[1].lastName).toEqual('Duet');
+    expect(users.data.users[1].email).toEqual('handuet@thumbwars.com');
   });
 });

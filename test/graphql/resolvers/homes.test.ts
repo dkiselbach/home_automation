@@ -1,9 +1,9 @@
 import { createHomeWithUser } from '../../factories/home.factory.js';
-import EasyGraphQLTester from 'easygraphql-tester';
-import { graphQLSchema } from '../../../src/graphql/schema.js';
+import request from 'supertest';
+import bcrypt from 'bcrypt';
+import { authenticationHeader } from '../../utils/authentication.js';
 
 describe('homes', () => {
-  let tester;
   let query = `{
     homes {
       id
@@ -23,11 +23,16 @@ describe('homes', () => {
   }`;
 
   beforeEach(async () => {
-    tester = new EasyGraphQLTester(graphQLSchema);
     await createHomeWithUser({
       addressLine1: '101 California',
       name: "Dylan's Home",
-      users: [{ firstName: 'Dylan', lastName: 'Kiselbach', email: 'test@gmail.com' }],
+      users: [
+        {
+          firstName: 'Dylan',
+          lastName: 'Kiselbach',
+          email: 'test@gmail.com',
+        },
+      ],
     });
     await createHomeWithUser({
       addressLine1: 'Another address',
@@ -36,7 +41,13 @@ describe('homes', () => {
   });
 
   test('returns homes and users', async () => {
-    const homes = await tester.graphql(query);
+    const homesResponse = await request(global.app)
+      .post('/graphql')
+      .send({ query: query })
+      .set('Accept', 'application/json')
+      .set('Authorization', await authenticationHeader());
+
+    const homes = homesResponse.body;
 
     expect(homes.data.homes).toHaveLength(2);
     expect(homes.data.homes[0].addressLine1).toEqual('101 California');

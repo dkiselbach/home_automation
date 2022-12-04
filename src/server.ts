@@ -11,6 +11,8 @@ import User from './models/user.js';
 
 Model.knex(knex);
 const app = new Koa();
+let PORT;
+
 app.use(cors());
 
 app.use(async (ctx, next) => {
@@ -38,6 +40,11 @@ app.use(
   ),
 );
 
-export default app.listen(4000);
+if (process.env.NODE_ENV === 'test') {
+  PORT = 0;
+} else {
+  PORT = 4000;
 
-console.log('listening');
+  console.log('listening');
+}
+export default app.listen(PORT);
