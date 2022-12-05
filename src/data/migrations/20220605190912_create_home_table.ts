@@ -1,6 +1,6 @@
 const tableName = 'homes';
 
-exports.up = async (knex) => {
+export const up = async (knex) => {
   await knex.schema.createTable(tableName, (tbl) => {
     tbl.increments('id').primary();
     tbl.string('addressLine1').notNullable();
@@ -22,4 +22,4 @@ exports.up = async (knex) => {
   `);
 };
 
-exports.down = (knex) => knex.schema.dropTableIfExists(tableName);
+export const down = (knex) => knex.schema.dropTableIfExists(tableName);

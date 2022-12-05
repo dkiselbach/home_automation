@@ -5,7 +5,12 @@ dotenv.config();
 export default {
   development: {
     client: 'pg',
-    connection: 'postgresql://localhost/home_automation',
+    connection: {
+      host : 'localhost',
+      user : 'dkiselbach',
+      password : 'password',
+      database : 'home_automation'
+    },
     migrations: {
       directory: './migrations',
     },
@@ -14,7 +19,12 @@ export default {
 
   test: {
     client: 'pg',
-    connection: 'postgresql://localhost/home_automation_test',
+    connection: {
+      host : 'localhost',
+      user : 'dkiselbach',
+      password : 'password',
+      database : 'home_automation_test'
+    },
     migrations: {
       directory: './migrations',
     },
@@ -25,7 +35,7 @@ export default {
     client: 'pg',
     connection: process.env.DB_URL,
     migrations: {
-      directory: './migrations',
+      directory: './data/migrations',
     },
     seeds: { directory: './seeds' },
   },

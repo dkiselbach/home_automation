@@ -35,7 +35,7 @@ app.use(
     '/graphql',
     graphqlHTTP({
       schema: graphQLSchema,
-      graphiql: true,
+      graphiql: { headerEditorEnabled: true },
     }),
   ),
 );

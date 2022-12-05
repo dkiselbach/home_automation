@@ -1,4 +1,4 @@
-exports.up = function (knex) {
+export const up = function (knex) {
   return knex.raw(`
     CREATE OR REPLACE FUNCTION update_timestamp() RETURNS TRIGGER
     LANGUAGE plpgsql
@@ -12,7 +12,7 @@ exports.up = function (knex) {
   `);
 };
 
-exports.down = function (knex) {
+export const down = function (knex) {
   return knex.raw(`
     DROP FUNCTION IF EXISTS update_timestamp() CASCADE;
   `);
