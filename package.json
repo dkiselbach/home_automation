@@ -36,7 +36,7 @@
     "graphql": "^16.6.0",
     "jsonwebtoken": "^8.5.1",
     "knex": "^2.3.0",
-    "koa": "^2.13.4",
+    "koa": "^2.14.1",
     "koa-graphql": "^0.12.0",
     "koa-mount": "^4.0.0",
     "objection": "^3.0.1",
